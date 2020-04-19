@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Tic Tac Toe</title>
+        <META http-equiv="content-Type" content="text/html" charset="UTF-8">
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <link rel="stylesheet" href="./CSS/game.css">
+        <style></style>
+    </head>
+    <body id="body">
+        <audio id="placeAvatar">
+            <source src="./Media/placeAvatar.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+        </audio>
+        <audio id="winGame">
+            <source src="./Media/winGame.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+        </audio>
+        <audio id="tieGame">
+            <source src="./Media/tieGame.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+        </audio>
+        <audio id="dimeRoll">
+            <source src="./Media/diceRoll.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+        </audio>
+        <div id="shell">
+            <div id="gameMsgBox" onclick="hideGameMsg()"><p id="gameMsg"></p></div>
+
+            <div class="console_Left">
+                <div class=" displayBox boxLeft">
+                    <Strong>Current Config:</Strong><br><br>
+                    <label>Player 1: &nbsp;&nbsp;<span id="p1Display">0</span></label><br><br>
+                    <label>Player 2: &nbsp;&nbsp;<span id="p2Display">X</span></label>
+                </div>
+                <div class=""><button id="btnStart" onclick="startGame()">Start Game</button></div>
+                <div id="boardState"></div>
+                <div id="controls">
+                    <div id="messageFrame">
+                        <p id="showHeader">ACTIVE PLAYER</p>
+                        <p id="showPlayer">Game Stopped</p>
+                    </div>
+                </div>
+            </div>
+            
+            <table>
+                <tr>
+                    <td>
+                        <div class="photo-container">
+                            <div id="square0" class="square" onclick="square1Animate()" ondblclick="">
+                                <div class="O"></div>
+                                <div class="X"></div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="photo-container">
+                            <div id="square1" class="square" onclick="square2Animate()" ondblclick="">
+                                <div class="O"></div>
+                                <div class="X"></div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="photo-container">
+                            <div id="square2" class="square" onclick="square3Animate()" ondblclick="">
+                                <div class="O"></div>
+                                <div class="X"></div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="photo-container">
+                            <div id="square3" class="square" onclick="square4Animate()" ondblclick="">
+                                <div class="O"></div>
+                                <div class="X"></div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="photo-container">
+                            <div id="square4" class="square" onclick="square5Animate()" ondblclick="">
+                                <div class="O"></div>
+                                <div class="X"></div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="photo-container">
+                            <div id="square5" class="square" onclick="square6Animate()" ondblclick="">
+                                <div class="O"></div>
+                                <div class="X"></div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>    
+                <tr>
+                    <td>
+                        <div class="photo-container">
+                            <div id="square6" class="square" onclick="square7Animate()" ondblclick="">
+                                <div class="O"></div>
+                                <div class="X"></div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="photo-container">
+                            <div id="square7" class="square" onclick="square8Animate()" ondblclick="">
+                                <div class="O"></div>
+                                <div class="X"></div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="photo-container">
+                            <div id="square8" class="square" onclick="square9Animate()" ondblclick="">
+                                <div class="O"></div>
+                                <div class="X"></div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            
+            <div class="console_Right" style="float:right;">
+                <div class="displayBox boxRight">
+                    <Strong>Configuration: </Strong><br><br>
+                    <label>Player 1: </label><select id="player1"><option value="X">X</option><option value="O">O</option></select><br>
+                    <label>Player 2: </label><select id="player2"><option value="X">X</option><option value="O">O</option></select><br>
+                    <button onclick="saveSettings()">Save Config</button>
+                </div>
+                <div id="controls">
+                    <button id="btnStop" onclick="stopGame()">Stop Game</button>
+                </div>
+            </div>
+        </div>
+        <script>
+            var arrayO = document.getElementsByClassName("O");
+            var arrayX = document.getElementsByClassName("X");
+            for (var i=0; 1<arrayO.length;1++) {
+                arrayO[i].style.transform = "translateY(-100%)";
+            }
+            for (var i=0; i<arrayX.length;i++) {
+                arrayX[i].style.transform = "translateY(100%)";
+            }
+        </script>
+
+        <script src="./JS/tictactoe.js"></script>
+
+    </body>
+</html>
