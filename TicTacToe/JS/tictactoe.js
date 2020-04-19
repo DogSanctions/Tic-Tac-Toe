@@ -7,11 +7,12 @@ function watch() {
 function rollForTurn() {
     var xArray = [];
     var ranNum = '';
-    var mininum = 1;
+    var minimum = 1;
     var maximum = 11;
     var first ="";
     var txt1 = "";
     for (var i= 0; i < 2; i++) {
+
         ranNum = Math.floor(Math.random()*(maximum - minimum) + minimum);
         xArray.push(ranNum);
     }
@@ -33,15 +34,13 @@ function rollForTurn() {
 
     if (pOne > pTwo) {
         first = "Player 1";
-        setTimeout(function() { txt1 = txt1 + "Player 1 wins, please choose a square.";}, 2000);
+        setTimeout(function(){ txt1 = txt1 + "Player 1 wins, please choose a square.";}, 2000);
         setTimeout(function () {writeMsg(txt1);}, 2000);
-
     } else if (pOne < pTwo) {
         first = "Player 2";
-        setTimeout(function() { txt1 = txt1 + "Player 2 wins, please choose a square."}, 2000);
+        setTimeout(function(){ txt1 = txt1 + "Player 2 wins, please choose a square."}, 2000);
         setTimeout(function() {writeMsg(txt1);}, 2000);
     } 
-
     return first;
 }
 
@@ -84,7 +83,7 @@ function startEnabled(btn) {
     btn.disabled = false;
 }
 
-function stopGane() {
+function stopGame() {
     hideGameMsg();
     var btn = document.getElementById('btnStart');
     startEnabled(btn);
@@ -94,9 +93,9 @@ function stopGane() {
     showPlayer.innerHTML = "Game Stopped";
     showPlayer.style.color= 'red';
 
-    var arrayO = document.getElementById("O");
-    var arrayX = document.getElementById("X");
-    for (var i=0; i<ArrayO.length;i++) {
+    var arrayO = document.getElementsByClassName("O");
+    var arrayX = document.getElementsByClassName("X");
+    for (var i=0; i<arrayO.length;i++) {
         arrayO[i].style.transform = "translateY(-100%)";
     }
     for (var i=0; i<arrayX.length;i++) {
@@ -112,7 +111,7 @@ function showGameMsg() {
 
 function hideGameMsg() {
     clearMsg()
-    document.getElementById('gameMagBox').style.display = 'none';
+    document.getElementById('gameMsgBox').style.display = 'none';
 }
 
 function writeMsg(txt) {
@@ -130,7 +129,7 @@ function saveSettings () {
     var p2Index = document.getElementById("player2").selectedIndex;
     var p2Selected = document.getElementById("player2").options;
     if (p1Selected[p1Index].text = p2Selected[p2Index].text) {
-        alert("Error -Play 1 and Player 2  cannot both be assigned as: " +p1Selected[p1Index].text)
+        alert("Error - Player 1 and Player 2  cannot both be assigned as: " +p1Selected[p1Index].text)
     } else {
        document.getElementById('p1Display').innerHTML=p1Selected[p1Index].text;
        document.getElementById('p2Display').innerHTML=p2Selected[p2Index].text;
@@ -215,6 +214,7 @@ function checkForWinCon() {
     checkWinCon6(info,squareArray);
     checkWinCon7(info,squareArray);
     checkWinCon8(info,squareArray);
+
     check4Tie();
 }
 
@@ -255,7 +255,7 @@ function glowBoard(pos) {
         if (i == index0) {
             var bg1 = squares[i];
             blink();
-            winsound();
+            winSound();
             setTimeout(function() {bg1.style.backgroundColor = 'rgb(244, 179, 66)';}, 100);
             setTimeout(function() {bg1.style.backgroundColor = 'rgb(244, 235, 66)';}, 200);
             setTimeout(function() {bg1.style.backgroundColor = 'rgb(197, 244, 66)';}, 300);
@@ -340,20 +340,20 @@ function blink() {
 
 function checkWinCon1(info,squareArray) {
     var winDetected = "on";
-    var WinCon1 = [0,1,2];
+    var winCon1 = [0,1,2];
     for (var i in info) {
         if (info[i].charAt(0) == "0") {
             var match0Avatar = info[i].charAt(1);
         }
         if (info[i].charAt(0) == "1") {
-            var match0Avatar = info[i].charAt(1);
+            var match1Avatar = info[i].charAt(1);
         }
         if (info[i].charAt(0) == "2") {
-            var match0Avatar = info[i].charAt(1);
+            var match2Avatar = info[i].charAt(1);
         }
     }
 
-    if (match0Avatar != undefined && match1Avatar !=undefined && match2Avatar != undefined) {
+    if (match0Avatar != undefined && match1Avatar != undefined && match2Avatar != undefined) {
         if (match0Avatar == match1Avatar && match0Avatar == match2Avatar) {
             winDetected = "win";
             winner(winDetected,WinCon1);
@@ -527,7 +527,7 @@ function square1Animate() {
         var verdict = recordMoves(square);
         if (verdict == undefined) {
             var paintAvatar = determineAvatar();
-            var selected = document.getElementById(paintAvatar)[0];
+            var selected = document.getElementsByClassName(paintAvatar)[0];
             if (paintAvatar == "O") {
                 animateO(selected);
             } else if (paintAvatar == "X") {
@@ -537,7 +537,7 @@ function square1Animate() {
             recordMove(currentMove);
             checkForWinCon();
             avatarPlaced(square,paintAvatar);
-            sqaureSound();
+            squareSound();
         }
     }
 }
@@ -550,7 +550,7 @@ function square2Animate() {
         var verdict = recordMoves(square);
         if (verdict == undefined) {
             var paintAvatar = determineAvatar();
-            var selected = document.getElementById(paintAvatar)[1];
+            var selected = document.getElementsByClassName(paintAvatar)[1];
             if (paintAvatar == "O") {
                 animateO(selected);
             } else if (paintAvatar == "X") {
@@ -560,7 +560,7 @@ function square2Animate() {
             recordMove(currentMove);
             checkForWinCon();
             avatarPlaced(square,paintAvatar);
-            sqaureSound();
+            squareSound();
         }
     }
 }
@@ -573,7 +573,7 @@ function square3Animate() {
         var verdict = recordMoves(square);
         if (verdict == undefined) {
             var paintAvatar = determineAvatar();
-            var selected = document.getElementById(paintAvatar)[2];
+            var selected = document.getElementsByClassName(paintAvatar)[2];
             if (paintAvatar == "O") {
                 animateO(selected);
             } else if (paintAvatar == "X") {
@@ -583,7 +583,7 @@ function square3Animate() {
             recordMove(currentMove);
             checkForWinCon();
             avatarPlaced(square,paintAvatar);
-            sqaureSound();
+            squareSound();
         }
     }
 }
@@ -596,7 +596,7 @@ function square4Animate() {
         var verdict = recordMoves(square);
         if (verdict == undefined) {
             var paintAvatar = determineAvatar();
-            var selected = document.getElementById(paintAvatar)[3];
+            var selected = document.getElementsByClassName(paintAvatar)[3];
             if (paintAvatar == "O") {
                 animateO(selected);
             } else if (paintAvatar == "X") {
@@ -606,7 +606,7 @@ function square4Animate() {
             recordMove(currentMove);
             checkForWinCon();
             avatarPlaced(square,paintAvatar);
-            sqaureSound();
+            squareSound();
         }
     }
 }
@@ -619,7 +619,7 @@ function square5Animate() {
         var verdict = recordMoves(square);
         if (verdict == undefined) {
             var paintAvatar = determineAvatar();
-            var selected = document.getElementById(paintAvatar)[4];
+            var selected = document.getElementsByClassName(paintAvatar)[4];
             if (paintAvatar == "O") {
                 animateO(selected);
             } else if (paintAvatar == "X") {
@@ -629,7 +629,7 @@ function square5Animate() {
             recordMove(currentMove);
             checkForWinCon();
             avatarPlaced(square,paintAvatar);
-            sqaureSound();
+            squareSound();
         }
     }
 }
@@ -642,7 +642,7 @@ function square6Animate() {
         var verdict = recordMoves(square);
         if (verdict == undefined) {
             var paintAvatar = determineAvatar();
-            var selected = document.getElementById(paintAvatar)[5];
+            var selected = document.getElementsByClassName(paintAvatar)[5];
             if (paintAvatar == "O") {
                 animateO(selected);
             } else if (paintAvatar == "X") {
@@ -652,7 +652,7 @@ function square6Animate() {
             recordMove(currentMove);
             checkForWinCon();
             avatarPlaced(square,paintAvatar);
-            sqaureSound();
+            squareSound();
         }
     }
 }
@@ -665,7 +665,7 @@ function square7Animate() {
         var verdict = recordMoves(square);
         if (verdict == undefined) {
             var paintAvatar = determineAvatar();
-            var selected = document.getElementById(paintAvatar)[6];
+            var selected = document.getElementsByClassName(paintAvatar)[6];
             if (paintAvatar == "O") {
                 animateO(selected);
             } else if (paintAvatar == "X") {
@@ -675,7 +675,7 @@ function square7Animate() {
             recordMove(currentMove);
             checkForWinCon();
             avatarPlaced(square,paintAvatar);
-            sqaureSound();
+            squareSound();
         }
     }
 }
@@ -688,7 +688,7 @@ function square8Animate() {
         var verdict = recordMoves(square);
         if (verdict == undefined) {
             var paintAvatar = determineAvatar();
-            var selected = document.getElementById(paintAvatar)[7];
+            var selected = document.getElementsByClassName(paintAvatar)[7];
             if (paintAvatar == "O") {
                 animateO(selected);
             } else if (paintAvatar == "X") {
@@ -698,7 +698,7 @@ function square8Animate() {
             recordMove(currentMove);
             checkForWinCon();
             avatarPlaced(square,paintAvatar);
-            sqaureSound();
+            squareSound();
         }
     }
 }
@@ -711,7 +711,7 @@ function square9Animate() {
         var verdict = recordMoves(square);
         if (verdict == undefined) {
             var paintAvatar = determineAvatar();
-            var selected = document.getElementById(paintAvatar)[8];
+            var selected = document.getElementsByClassName(paintAvatar)[8];
             if (paintAvatar == "O") {
                 animateO(selected);
             } else if (paintAvatar == "X") {
@@ -721,7 +721,7 @@ function square9Animate() {
             recordMove(currentMove);
             checkForWinCon();
             avatarPlaced(square,paintAvatar);
-            sqaureSound();
+            squareSound();
         }
     }
 }

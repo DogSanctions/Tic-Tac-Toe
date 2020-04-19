@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Tic Tac Toe</title>
-        <META http-equiv="content-Type" content="text/html" charset="UTF-8">
+        <title>Tic Tac Toe Game</title>
+        <META http-equiv="content-type" content="text/html" charset="UTF-8">
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <link rel="stylesheet" href="./CSS/game.css">
         <style></style>
@@ -20,7 +20,7 @@
             <source src="./Media/tieGame.mp3" type="audio/mpeg">
                 Your browser does not support the audio element.
         </audio>
-        <audio id="dimeRoll">
+        <audio id="diceRoll">
             <source src="./Media/diceRoll.mp3" type="audio/mpeg">
                 Your browser does not support the audio element.
         </audio>
@@ -29,8 +29,8 @@
 
             <div class="console_Left">
                 <div class=" displayBox boxLeft">
-                    <Strong>Current Config:</Strong><br><br>
-                    <label>Player 1: &nbsp;&nbsp;<span id="p1Display">0</span></label><br><br>
+                    <strong>Current Config:</strong><br><br>
+                    <label>Player 1: &nbsp;&nbsp;<span id="p1Display">O</span></label><br>
                     <label>Player 2: &nbsp;&nbsp;<span id="p2Display">X</span></label>
                 </div>
                 <div class=""><button id="btnStart" onclick="startGame()">Start Game</button></div>
@@ -95,7 +95,7 @@
                             </div>
                         </div>
                     </td>
-                </tr>    
+                </tr>
                 <tr>
                     <td>
                         <div class="photo-container">
@@ -123,12 +123,12 @@
                     </td>
                 </tr>
             </table>
-            
+
             <div class="console_Right" style="float:right;">
                 <div class="displayBox boxRight">
-                    <Strong>Configuration: </Strong><br><br>
+                    <strong>Configuration: </strong><br><br>
                     <label>Player 1: </label><select id="player1"><option value="X">X</option><option value="O">O</option></select><br>
-                    <label>Player 2: </label><select id="player2"><option value="X">X</option><option value="O">O</option></select><br>
+                    <label>Player 2: </label><select id="player2"><option value="X">X</option><option value="O" selected="selected">O</option></select>
                     <button onclick="saveSettings()">Save Config</button>
                 </div>
                 <div id="controls">
@@ -139,15 +139,13 @@
         <script>
             var arrayO = document.getElementsByClassName("O");
             var arrayX = document.getElementsByClassName("X");
-            for (var i=0; 1<arrayO.length;1++) {
+            for (var i=0; i<arrayO.length; i++) {
                 arrayO[i].style.transform = "translateY(-100%)";
             }
-            for (var i=0; i<arrayX.length;i++) {
+            for (var i=0; i<arrayX.length; i++) {
                 arrayX[i].style.transform = "translateY(100%)";
             }
         </script>
-
         <script src="./JS/tictactoe.js"></script>
-
     </body>
 </html>
