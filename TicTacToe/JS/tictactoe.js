@@ -47,7 +47,7 @@ function rollForTurn() {
 function startGame() {
     var xTurn = 0;
     activePlayer = rollForTurn();
-    if (activePlayer = "") {
+    if (activePlayer == "") {
         activerPlayer = rollForTurn();
     }
     setTimeout(function() {hideGameMsg();}, 4000);
