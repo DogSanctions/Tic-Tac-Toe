@@ -206,6 +206,7 @@ function checkForWinCon() {
     for (var i in info) {
         squareArray.push(info[i].charAt(0)); 
     }
+    
     checkWinCon1(info,squareArray);
     checkWinCon2(info,squareArray);
     checkWinCon3(info,squareArray);
